@@ -1,11 +1,13 @@
 # ICP Analysis System
 
+> Part of the [Marketing Toolkit](https://github.com/adridder?tab=repositories&q=topic%3Amarketing) — a series of open-source Claude Code projects for marketing research and strategy.
+
 A self-contained [Claude Code](https://docs.anthropic.com/en/docs/claude-code) project that performs comprehensive ICP (Ideal Customer Profile) and competitor analysis for any company. Just provide a domain — it handles the rest and produces a professional xlsx spreadsheet.
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/alexderedder/ICP-Analysis.git
+git clone https://github.com/adridder/ICP-Analysis.git
 cd ICP-Analysis
 claude
 ```
@@ -108,10 +110,21 @@ ICP-Analysis/
 - **Spreadsheet layout**: Edit `references/xlsx-spec.md` to modify sheets, columns, or formatting
 - **Research sources**: Edit the guide files to add research sources or methodologies
 
+## Marketing Toolkit
+
+This project is part of a series of open-source marketing tools built on Claude Code:
+
+| Project | Description |
+|---------|-------------|
+| **[ICP Analysis](https://github.com/adridder/ICP-Analysis)** | ICP & competitor analysis — prospect psychology, positioning, funnel strategy |
+| *More coming soon* | Content strategy, ad copy, landing page optimization, and more |
+
+All projects in the series share the `marketing` topic on GitHub. [Browse the full collection.](https://github.com/adridder?tab=repositories&q=topic%3Amarketing)
+
 ## License
 
 Apache 2.0 — see [LICENSE](LICENSE)
 
 ## Author
 
-[Alexander De Ridder](https://github.com/alexderedder)
+[Alexander De Ridder](https://github.com/adridder)
