@@ -1,0 +1,16 @@
+# Output files (generated per-run)
+output/*.xlsx
+output/research/
+
+# Original template (not part of the distributable)
+Copy of Core Messaging Template.xlsx
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Plan files
+.claude/plans/
