@@ -6,7 +6,7 @@ description: >
   web research, user-provided data, or hybrid mode.
   Use when: user mentions ICP analysis, competitor analysis, customer profiling, target audience
   research, market positioning, core messaging, or wants to analyze a company's ideal customers.
-user_invocable: true
+user-invocable: true
 ---
 
 # ICP & Competitor Analysis Orchestrator
