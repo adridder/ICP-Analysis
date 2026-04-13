@@ -145,7 +145,7 @@ Write a summary covering:
 
 1. **AS-IS data collection**: Record what competitors ACTUALLY say in their marketing. Do not interpret, editorialize, or improve their messaging. If their copy is bad, record it faithfully.
 2. **Landing pages over homepages**: Find the actual sales page, not just the company homepage. Search for `site:{competitor.com} pricing` or look for CTAs that lead to conversion pages.
-3. **If data is unavailable**: Write "Not publicly available" rather than guessing. Partial data is better than fabricated data.
+3. **Every field must be filled.** If a specific data point isn't publicly available (e.g., pricing), write "Not publicly disclosed — requires sales contact." For marketing analysis fields (hook, USP, promise), these CAN always be derived from the competitor's website — look harder, check their landing pages, ads, and social media. Do not leave fields blank.
 4. **Cite URLs**: Include the URL you pulled data from for each competitor.
 5. **Threat type is mandatory**: Every competitor MUST have a `threat_type` field. Do not leave it blank.
 6. **Do NOT fill all slots with direct competitors**: The required mix (2 direct, 2 adjacent, 1 build-vs-buy, 1 emerging) is a hard requirement, not a suggestion.

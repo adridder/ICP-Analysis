@@ -93,7 +93,7 @@ Each subagent must output a JSON file to `output/research/{agent-name}.json` con
 }
 ```
 
-Note: `competitors` array must contain exactly 6 entries with the following mix: 2 `direct`, 2 `adjacent_platform`, 1 `build_vs_buy`, 1 `emerging`. If fewer than 6 are found, include the best available and mark remaining as "Not enough data found - manual research recommended."
+Note: `competitors` array must contain exactly 6 entries with the following mix: 2 `direct`, 2 `adjacent_platform`, 1 `build_vs_buy`, 1 `emerging`. All 6 slots MUST be filled — do not leave any empty. If a specific competitor is hard to find for a slot, broaden your search or pick the closest match. Every competitor must have all fields populated.
 
 ---
 
@@ -275,10 +275,11 @@ Note: `competitors` array must contain exactly 6 entries with the following mix:
 
 ## Notes for Subagents
 
-1. **All string fields should be substantive** - not placeholder text. If research doesn't yield enough data for a field, write "Insufficient data - requires manual research" rather than guessing.
-2. **Be specific** - use real numbers, real names, real quotes where found. Generic statements reduce the value of the analysis.
-3. **Cite sources** where possible - include "(Source: [URL])" inline when making factual claims based on web research.
-4. **Competitor data is captured AS-IS** - record what competitors actually say in their marketing, don't editorialize or interpret.
+1. **Every field MUST be filled.** No field should be empty, null, "N/A", "TBD", or contain placeholder text like "Insufficient data" or "manual research recommended." If direct research doesn't yield data, use reasoning to synthesize an answer from what you DO know. If a competitor's pricing isn't public, write "Not publicly disclosed — requires sales contact" — that IS the data.
+2. **Be specific** — use real numbers, real names, real quotes where found. Generic statements reduce the value of the analysis.
+3. **Cite sources** where possible — include "(Source: [URL])" inline when making factual claims based on web research.
+4. **Competitor data is captured AS-IS** — record what competitors actually say in their marketing, don't editorialize or interpret.
 5. **Features array** should contain 7-12 features, ranked by marketing power (how compelling they are to prospects).
 6. **Headlines variants** should contain 8-14 variants, each a distinct angle on the Big Idea.
 7. **Sub-beliefs** should contain 6-10 entries, ranked by importance to the overall marketing argument.
+8. **Analytical fields are synthesized, not just researched.** Fields like Big Idea, marketing thesis, promise spectrum, awareness pyramid, headlines, and funnel strategy are YOUR analysis derived from the research — they should never be blank. You have enough data to produce these.

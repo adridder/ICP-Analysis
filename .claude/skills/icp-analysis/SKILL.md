@@ -167,19 +167,35 @@ Domain: [domain]
 User-provided context: [additional_context or "None"]
 ```
 
-### Phase 4: Synthesis & Validation
+### Phase 4: Completeness Check & Gap Filling
 
 After all 4 agents complete:
 
 1. Read all 4 JSON files from `output/research/`
-2. Validate cross-references:
+2. **Scan every field for gaps.** Check every string field in every JSON file. Flag any field that:
+   - Is empty, null, or contains only whitespace
+   - Contains "Insufficient data", "Not enough data", "manual research recommended", "N/A", or "TBD"
+   - Is shorter than 20 characters for fields that should contain substantive analysis (promises, descriptions, benefit statements, etc.)
+   - Contains generic placeholder text rather than specific, researched content
+3. **If gaps are found, fill them.** For each gap:
+   - Do targeted web research yourself (web search + web fetch) to fill the specific missing field
+   - Use reasoning and synthesis from the data you DO have to derive fields that are analytical (e.g., Big Idea, thesis, promise spectrum levels can be synthesized from prospect + product data)
+   - For competitor fields where a competitor's marketing doesn't publicly disclose data (e.g., pricing), write a specific note like "Not publicly disclosed — contact required for pricing" rather than a generic placeholder
+   - Update the JSON file with the filled data
+4. **Repeat the scan** after gap-filling. Do NOT proceed to spreadsheet generation until every substantive field has real content.
+5. Report the gap-fill results: "Research complete. Filled [N] gaps via follow-up research. Generating spreadsheet..."
+
+### Phase 5: Cross-Reference Validation
+
+After all gaps are filled:
+
+1. Validate cross-references:
    - Does the Big Idea align with the dominant prospect emotion?
    - Do the headline variants reflect the Big Idea?
    - Does the marketing thesis address the biggest gap in competitor positioning?
    - Are the sub-beliefs in logical order?
    - Do the MVF components match the recommended awareness level?
-3. Fix any inconsistencies by updating the JSON files
-4. Report progress to the user: "Research complete. Generating your analysis spreadsheet..."
+2. Fix any inconsistencies by updating the JSON files
 
 ### Phase 5: Spreadsheet Generation
 
@@ -237,14 +253,16 @@ Would you like me to refine any section?
 
 ## Error Handling
 
-- If a research agent fails or returns incomplete data, report which section is incomplete and offer to retry or have the user fill in manually
-- If web research is blocked (no internet, tool disabled), switch to manual mode for that section
-- If the xlsx generation fails, save the raw JSON data and offer it as an alternative output
+- If a research agent fails, re-launch it once. If it fails again, do the research yourself inline.
+- If web research is blocked (no internet, tool disabled), switch to manual mode and ask the user for the missing data.
+- If the xlsx generation fails, save the raw JSON data and offer it as an alternative output.
+- **Never deliver a spreadsheet with empty or placeholder cells.** If the gap-filling phase can't fill a field, ask the user for the data before generating the spreadsheet.
 
 ## Important Notes
 
-- Never fabricate data. If research doesn't yield enough for a field, mark it as "Insufficient data - requires manual research"
-- Competitor data must be captured AS-IS from their marketing - do not editorialize
-- The Big Idea formula (EC(PP+UM)+II=BI) is not optional - it must be properly derived
-- All 14 sections must appear in the final spreadsheet, even if some have limited data
+- **No empty cells in the final spreadsheet.** Every cell defined in the xlsx-spec must contain substantive, researched content. The only exception is competitor pricing that is genuinely not public — note "Not publicly disclosed" rather than leaving blank.
+- Never fabricate data or invent statistics. But DO synthesize analytical frameworks (thesis, Big Idea, promise spectrum, awareness pyramid, headlines, funnel strategy) from the research data — these are derived analysis, not raw data.
+- Competitor data must be captured AS-IS from their marketing — do not editorialize.
+- The Big Idea formula (EC(PP+UM)+II=BI) is not optional — it must be properly derived.
+- All 14 sections must appear in the final spreadsheet with complete content.
 - The final output MUST be an xlsx spreadsheet. JSON files are intermediate artifacts only.
