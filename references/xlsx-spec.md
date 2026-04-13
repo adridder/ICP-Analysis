@@ -93,6 +93,32 @@ The workbook contains **4 sheets**:
 
 Tab colors: Sheet 1 = `#4472C4` (blue), Sheet 2 = `#ED7D31` (orange), Sheet 3 = `#70AD47` (green), Sheet 4 = `#7030A0` (purple)
 
+### Branding Row (EVERY sheet)
+
+The **first row** of every sheet is the branding row. All section content shifts down by 2 rows to accommodate it.
+
+- **A1**: "ICP Analysis by Alexander De Ridder" (Aptos, 10pt, bold, color `#4472C4`)
+- **D1**: "linkedin.com/in/adridder" (Aptos, 10pt, color `#4472C4`, underlined) — this is a hyperlink to `https://linkedin.com/in/adridder`
+- Row 1 height: 20
+- Row 1 has no borders, no fill — clean and minimal
+
+```python
+from openpyxl.styles import Font
+
+branding_font = Font(name='Aptos', size=10, bold=True, color='4472C4')
+link_font = Font(name='Aptos', size=10, color='4472C4', underline='single')
+
+# Apply to every sheet:
+ws['A1'] = 'ICP Analysis by Alexander De Ridder'
+ws['A1'].font = branding_font
+ws['D1'] = 'linkedin.com/in/adridder'
+ws['D1'].font = link_font
+ws['D1'].hyperlink = 'https://linkedin.com/in/adridder'
+ws.row_dimensions[1].height = 20
+```
+
+**Important**: Because row 1 is now the branding row, all section content described below starts at the row numbers specified (which already account for this). The branding row is ABOVE the section headers.
+
 ---
 
 ## Sheet 1: Prospect Analysis
