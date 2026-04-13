@@ -91,27 +91,37 @@ The workbook contains **4 sheets** (re-organized from the original single-sheet 
 |--------|-------|---------|
 | A | 4 | Spacer |
 | B | 8 | Number |
-| C | 20 | Name |
-| D | 25 | Hook (Idea) |
-| E | 30 | Primary Marketing Promise |
-| F | 20 | Delivery Mechanism |
-| G | 25 | USP |
-| H | 30 | General Marketing Claims |
-| I | 25 | Proof Points |
-| J | 25 | Benefit Statements |
-| K | 25 | Deliverables/Features |
-| L | 15 | Price/Terms |
-| M | 20 | Bonuses |
-| N | 20 | Risk-Reversal |
+| C | 18 | Threat Type |
+| D | 20 | Name |
+| E | 25 | Hook (Idea) |
+| F | 30 | Primary Marketing Promise |
+| G | 20 | Delivery Mechanism |
+| H | 25 | USP |
+| I | 30 | General Marketing Claims |
+| J | 25 | Proof Points |
+| K | 25 | Benefit Statements |
+| L | 25 | Deliverables/Features |
+| M | 15 | Price/Terms |
+| N | 20 | Bonuses |
+| O | 20 | Risk-Reversal |
 
-### Section 2: Competitor Analysis (Rows 2-12)
-- **B2**: Section header "2. Competitor Analysis" (merged B2:N2, yellow bg, 14pt bold)
-- **B4:N4**: Instruction text: "TOP Competitors (Results-perspective)"
-- **B6:N6**: Column headers (13 columns, bold, 13pt):
-  `Number | Name | Hook (Idea) | Primary Marketing Promise | Delivery Mechanism | USP | General Marketing Claims | Proof Points | Benefit Statements | Deliverables/Features | Price/Terms | Bonuses | Risk-Reversal`
-- **B7:N12**: 6 data rows (one per competitor)
+### Section 2: Competitor Analysis (Rows 2-14)
+- **B2**: Section header "2. Competitor Analysis" (merged B2:O2, yellow bg, 14pt bold)
+- **B4:O4**: Instruction text: "TOP Competitors (Results-perspective) — across direct, adjacent platform, build-vs-buy, and emerging threats"
+- **B6:O6**: Column headers (14 columns, bold, 13pt):
+  `Number | Threat Type | Name | Hook (Idea) | Primary Marketing Promise | Delivery Mechanism | USP | General Marketing Claims | Proof Points | Benefit Statements | Deliverables/Features | Price/Terms | Bonuses | Risk-Reversal`
+- **B7:O12**: 6 data rows (one per competitor)
   - Content from `competitor-researcher` output field: `competitors[]`
-  - Each competitor is an object with all 13 fields
+  - Each competitor is an object with all 14 fields including `threat_type`
+  - Threat Type values: "Direct", "Adjacent Platform", "Build vs. Buy", "Emerging"
+  - Color-code Threat Type cells:
+    - Direct: no fill
+    - Adjacent Platform: light red fill (#FFE0E0)
+    - Build vs. Buy: light orange fill (#FFF0D0)
+    - Emerging: light blue fill (#E0F0FF)
+- **B14:O14**: Threat Assessment row (merged B14:O14)
+  - Content from `competitor-researcher` output field: `threat_assessment`
+  - Format: "Platform Risk: [value] | Build vs. Buy Pressure: [value] | Category Velocity: [value]"
 
 ### Section 3: Product Analysis (Rows 16-40)
 - **B16**: Section header "3. Our Product Analysis" (merged B16:N16, yellow bg, 14pt bold)

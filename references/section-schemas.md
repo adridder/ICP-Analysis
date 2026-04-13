@@ -67,9 +67,15 @@ Each subagent must output a JSON file to `output/research/{agent-name}.json` con
 {
   "company_name": "string",
   "market_context": "string (what result/outcome prospects are seeking, framed from results-perspective)",
+  "threat_assessment": {
+    "platform_risk": "string (how likely is it that cloud/AI platforms commoditize this category?)",
+    "build_vs_buy_pressure": "string (how hard is it to replicate the core value with DIY?)",
+    "category_velocity": "string (how fast is the competitive landscape changing?)"
+  },
   "competitors": [
     {
       "number": 1,
+      "threat_type": "string (direct | adjacent_platform | build_vs_buy | emerging)",
       "name": "string",
       "hook": "string (their core idea/angle)",
       "primary_marketing_promise": "string",
@@ -87,7 +93,7 @@ Each subagent must output a JSON file to `output/research/{agent-name}.json` con
 }
 ```
 
-Note: `competitors` array must contain exactly 6 entries. If fewer than 6 are found, include the best available and mark remaining as "Not enough data found - manual research recommended."
+Note: `competitors` array must contain exactly 6 entries with the following mix: 2 `direct`, 2 `adjacent_platform`, 1 `build_vs_buy`, 1 `emerging`. If fewer than 6 are found, include the best available and mark remaining as "Not enough data found - manual research recommended."
 
 ---
 
