@@ -20,13 +20,13 @@ def auto_height(ws):
                 col_w = ws.column_dimensions.get(cell.column_letter)
                 width = col_w.width if col_w and col_w.width else 10
                 chars_per_line = max(int(width * 1.2), 1)
-                # Count explicit newlines AND wrapped lines
+                cell_lines = 0
                 for paragraph in str(cell.value).split('\n'):
-                    max_lines += max(1, -(-len(paragraph) // chars_per_line))  # ceil division
-                max_lines += str(cell.value).count('\n')
+                    cell_lines += max(1, -(-len(paragraph) // chars_per_line))  # ceil division
+                max_lines = max(max_lines, cell_lines)
             elif cell.value:
                 max_lines = max(max_lines, 1)
-        row_height = max(20, min(max_lines * 15, 409))  # Excel max row height is 409
+        row_height = max(15, min(max_lines * 15, 409))  # min 15 (standard), max 409 (Excel limit)
         ws.row_dimensions[row[0].row].height = row_height
 ```
 
@@ -97,16 +97,17 @@ Tab colors: Sheet 1 = `#4472C4` (blue), Sheet 2 = `#ED7D31` (orange), Sheet 3 = 
 
 The **first row** of every sheet is the branding row. All section content shifts down by 2 rows to accommodate it.
 
-- **A1**: "ICP Analysis by Alexander De Ridder" (Aptos, 10pt, bold, color `#4472C4`)
-- **D1**: "linkedin.com/in/adridder" (Aptos, 10pt, color `#4472C4`, underlined) — this is a hyperlink to `https://linkedin.com/in/adridder`
-- Row 1 height: 20
+- **A1**: "ICP Analysis by Alexander De Ridder" (Aptos, 9pt, bold, color `#4472C4`)
+- **D1**: "linkedin.com/in/adridder" (Aptos, 9pt, color `#4472C4`, underlined) — hyperlink to `https://linkedin.com/in/adridder`
+- **F1**: "Contribute to this Open Source Project: github.com/adridder/ICP-Analysis" (Aptos, 9pt, color `#4472C4`, underlined) — hyperlink to `https://github.com/adridder/ICP-Analysis`
+- Row 1 height: 15 (compact, single line)
 - Row 1 has no borders, no fill — clean and minimal
 
 ```python
 from openpyxl.styles import Font
 
-branding_font = Font(name='Aptos', size=10, bold=True, color='4472C4')
-link_font = Font(name='Aptos', size=10, color='4472C4', underline='single')
+branding_font = Font(name='Aptos', size=9, bold=True, color='4472C4')
+link_font = Font(name='Aptos', size=9, color='4472C4', underline='single')
 
 # Apply to every sheet:
 ws['A1'] = 'ICP Analysis by Alexander De Ridder'
@@ -114,7 +115,10 @@ ws['A1'].font = branding_font
 ws['D1'] = 'linkedin.com/in/adridder'
 ws['D1'].font = link_font
 ws['D1'].hyperlink = 'https://linkedin.com/in/adridder'
-ws.row_dimensions[1].height = 20
+ws['F1'] = 'Contribute to this Open Source Project: github.com/adridder/ICP-Analysis'
+ws['F1'].font = link_font
+ws['F1'].hyperlink = 'https://github.com/adridder/ICP-Analysis'
+ws.row_dimensions[1].height = 15
 ```
 
 **Important**: Because row 1 is now the branding row, all section content described below starts at the row numbers specified (which already account for this). The branding row is ABOVE the section headers.
